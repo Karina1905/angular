@@ -1,0 +1,32 @@
+<h2>Список співробітників</h2>
+
+<input class="form-control mb-3" [(ngModel)]="search" placeholder="Пошук за ім’ям" />
+
+<ul class="list-group mb-3">
+  <li *ngFor="let emp of filteredEmployee" class="list-group-item d-flex justify-content-between align-items-center">
+    {{ emp.name }} — {{ emp.position }} — {{ emp.salary }} грн
+    <button class="btn btn-sm btn-outline-info" (click)="openDetails(emp)">Деталі</button>
+  </li>
+</ul>
+
+<p><strong>Загальна зарплата:</strong> {{ totalSum }} грн</p>
+
+<h3>Додати нового співробітника</h3>
+<div class="mb-3">
+  <input class="form-control mb-2" [(ngModel)]="newName" placeholder="Ім’я" />
+  <input class="form-control mb-2" [(ngModel)]="newPosition" placeholder="Посада" />
+  <input class="form-control mb-2" type="number" [(ngModel)]="newSalary" placeholder="Зарплата" />
+  <button class="btn btn-success" (click)="addEmployee()">Додати</button>
+</div>
+
+
+<div *ngIf="selectedEmployee" class="modal-backdrop">
+  <div class="modal-window">
+    <h4>Деталі співробітника</h4>
+    <p><strong>Ім’я:</strong> {{ selectedEmployee.name }}</p>
+    <p><strong>Посада:</strong> {{ selectedEmployee.position }}</p>
+    <p><strong>Зарплата:</strong> {{ selectedEmployee.salary }} грн</p>
+    <button class="btn btn-secondary" (click)="closeDetails()">Закрити</button>
+  </div>
+</div>
+
