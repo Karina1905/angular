@@ -1,0 +1,8 @@
+<div class="container py-4">
+  <app-toggle-theme></app-toggle-theme>
+  <app-add-contact (contactAdded)="handleAdd($event)"></app-add-contact>
+  <app-contact-list
+    [contacts]="contacts()"
+    (deleteContact)="handleDelete($event)">
+  </app-contact-list>
+</div>
