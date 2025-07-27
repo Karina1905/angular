@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Співробітники</h1>
+    <div class="d-flex gap-2">
+    <a routerLink="/departaments">Відділи</a>
+    <a routerLink="/">Головна</a>
+</div>
+    <input [(ngModel)]="searchItem" placeholder="Пошук ім'я або посада" class="form-control">
+    <form (ngSubmit)="addEmployee()">
+        <input [(ngModel)]='name' name="name" class="form-control" placeholder="Name">
+        <hr>
+        <input [(ngModel)]='position' name="position" class="form-control" placeholder="Position">
+        <hr>
+        <select [(ngModel)]="departmentId" name="departamentId" class="form-select">
+            <option *ngFor="let dept of departments" [value]="dept.id">{{dept.name}}</option>
+        </select>
+        <hr>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th (click)="toggleSort('name')" style="cursor: pointer">Name <span *ngIf="sortBy == 'name'">{{sortAsc ? '⬆' : '⬇'}}</span></th>
+                <th (click)="toggleSort('position')" style="cursor: pointer">Position <span *ngIf="sortBy == 'position'">{{sortAsc ? '⬆' : '⬇'}}</span></th>
+                <th>Відділ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of filteredAndSortEmployees">
+                <td>{{emp.name}}</td>
+                <td>{{emp.position}}</td>
+                <td>{{getDepartmentName(emp.departmentId)}}</td>
+                <td>
+                    <button (click)="deleteEmployee(emp.id)" class="btn btn-danger">Delete</button>
+                    <button [routerLink]="['/employee', emp.id]" class="btn btn-primary">Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

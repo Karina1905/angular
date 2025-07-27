@@ -1,0 +1,13 @@
+<div class="container" *ngIf="employee; else notFound">
+<h2>Details</h2>
+<ul class="list-group">
+<li class="list-group-item">ID: {{employee.id}}</li>
+<li class="list-group-item">Name: {{employee.name}}</li>
+<li class="list-group-item">Position: {{employee.position}}</li>
+<li class="list-group-item">Department: {{departmentName}}</li>
+</ul>
+</div>
+<ng-template #notFound>
+    <p>Employee not found</p>
+    <button (click)="goBack()" class="btn btn-danger">Back</button>
+</ng-template>

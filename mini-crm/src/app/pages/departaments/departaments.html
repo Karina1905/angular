@@ -1,0 +1,32 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" [routerLink]="['/departments']">Відділи</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/employees']">Співробітники</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['']">Головна</a>
+  </li>
+</ul>
+
+<form class="row g-3">
+    <input class="form-control" [(ngModel)]='name' name='name' placeholder="name of department">
+    <button (click)="addDepartment()" class="btn btn-primary mb-3">Add</button>
+</form>
+
+
+<ol class="list-group list-group-numbered" *ngIf="departments.length; else empty">
+  <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let dept of departments; trackBy: trackById">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{dept.name}}</div>
+    </div>
+    <span class="badge text-bg-primary rounded-pill">{{getEmployeeCount(dept.id)}}</span>
+ <button class="btn btn-danger" (click)="deleteDepartment(dept.id)">Видалити</button>
+   </li>
+</ol>
+
+<ng-template #empty>
+    <p>Відділів немає</p>
+</ng-template>
+
