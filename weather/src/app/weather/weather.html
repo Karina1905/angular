@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <h2 class="mb-3">Пошук погоди</h2>
+  <button class="btn btn-primary" routerLink="/history">Перейти до історії пошуку</button>
+  
+  <div class="input-group mb-3">
+    <input #cityInput type="text" class="form-control" placeholder="Enter city">
+    <button class="btn btn-primary" (click)="search(cityInput.value)">Search</button>
+  </div>
+
+  <div *ngIf="weatherData" class="card bg-body-secondary text-body p-3">
+    <h4 class="text-body">
+      {{ location.name }}, {{ location.region }}, {{ location.country }}
+    </h4>
+    <p class="text-body">
+      {{location.localtime}}, {{current.uv}}, {{current.vis_km}}
+    </p>
+    
+    <div class="d-flex align-items-center gap-3">
+      <img [src]="weatherData.condition.icon"
+           [alt]="weatherData.condition.text"
+           width="100"
+           height="100" />
+      <div>
+        <p class="mb-1 text-body">{{ weatherData.temp_c }}°C - {{ weatherData.condition.text }}</p>
+        <p class="mb-1 text-body">Вітер: {{ weatherData.wind_kph }} км/год</p>
+        <p class="mb-1 text-body">Вологість: {{ weatherData.humidity }}%</p>
+        <p class="mb-1 text-body">Тиск: {{ weatherData.pressure_mb }} гПа</p>
+      </div>
+    </div>
+
+    <h5 class="text-body">Прогноз погоди на 5 днів</h5>
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let day of forecastDays">
+        <div class="card bg-body text-body p-2 text-center">
+          <p class="text-body">{{day.date}}</p>
+          <img [src]="day.day.condition.icon" [alt]="day.day.condition.text" width="50" height="50">
+          <p class="text-body">{{day.day.condition.text}}</p>
+          <p class="text-body">Макс: {{ day.day.maxtemp_c }}°C</p>
+          <p class="text-body">Мін: {{ day.day.mintemp_c }}°C</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-danger" (click)="close()">Close</button>
+  </div>
+</div>
