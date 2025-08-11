@@ -1,0 +1,84 @@
+:root {
+  --pad: 12px;
+}
+
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  margin: 0;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.nav a.active {
+  background: #111827;
+  color: #fff;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}

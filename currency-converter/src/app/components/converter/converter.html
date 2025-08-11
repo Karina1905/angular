@@ -1,0 +1,53 @@
+<section class="card">
+  <h2>Конвертер валют</h2>
+
+  <div class="row" style="margin-top:8px;">
+    <div>
+      <label class="muted">Сума</label>
+      <input 
+        type="number" 
+        [(ngModel)]="amount" 
+        (ngModelChange)="onAmountChange()"
+        min="0" 
+        step="0.01" 
+        placeholder="Введіть суму"
+      />
+    </div>
+
+    <div>
+      <label class="muted">З валюти</label>
+      <select [(ngModel)]="fromCurrency" (ngModelChange)="performConversion()">
+        <option *ngFor="let code of currencyService.availableCodes" [value]="code">
+          {{ code }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label class="muted">У валюту</label>
+      <select [(ngModel)]="toCurrency" (ngModelChange)="performConversion()">
+        <option *ngFor="let code of currencyService.availableCodes" [value]="code">
+          {{ code }}
+        </option>
+      </select>
+    </div>
+
+    <div style="display:flex; align-items:flex-end; gap:8px;">
+      <button 
+        class="btn" 
+        type="button" 
+        (click)="swapCurrencies()"
+        title="Поміняти валюти місцями"
+      >
+        ⇄
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="conversionResult !== null" style="margin-top:14px;">
+    <div class="muted">Результат</div>
+    <div style="font-size:1.2rem; font-weight:600;">
+      {{ amount }} {{ fromCurrency }} → {{ conversionResult }} {{ toCurrency }}
+    </div>
+  </div>
+</section>

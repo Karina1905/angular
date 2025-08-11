@@ -1,0 +1,23 @@
+<section class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>Історія конвертацій</h2>
+    <button 
+      class="btn" 
+      (click)="clearHistory()"
+      [disabled]="conversionHistory.length === 0"
+    >
+      Очистити
+    </button>
+  </div>
+
+  <p class="muted" *ngIf="conversionHistory.length === 0" style="margin-top:6px;">
+    Історія конвертацій порожня.
+  </p>
+
+  <ul *ngIf="conversionHistory.length > 0" class="list" style="margin-top:6px;">
+    <li *ngFor="let record of conversionHistory" class="card">
+      <div style="font-weight:600;">{{ record.pretty }}</div>
+      <div class="muted">{{ formatDate(record.when) }}</div>
+    </li>
+  </ul>
+</section>
